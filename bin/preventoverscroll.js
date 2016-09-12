@@ -50,8 +50,11 @@ PreventOverScroll.prototype = {
 
 			if (!item)
 				throw '';
-
-			item.className += that.config.cClass;
+			if(!item.className){
+				item.className += that.config.cClass;
+			}else{
+				item.className += ' '+that.config.cClass;
+			}
 		}
 
 		this._appendStyle();
@@ -65,7 +68,7 @@ PreventOverScroll.prototype = {
 		var style    = doc.createElement('style'),
 			styleStr = '.' + this.config.cClass + this.config.styleStr;
 
-		styleStr += ' html, body {width: 100%; height: 100;}'
+		styleStr += ' html, body {width: 100%; height: 100%;}'
 		style.id        = this.config.styleId;
 		style.innerHTML = styleStr;
 
@@ -148,7 +151,11 @@ PreventOverScroll.prototype = {
 		this.config.list.push(id);
 		startMoveYmap[id] = 0;
 		item              = doc.getElementById(id);
-		item.className    += this.config.cClass;
+		if(!item.className){
+			item.className += this.config.cClass;
+		}else{
+			item.className += ' '+this.config.cClass;
+		}
 		this._bindEvent([id]);
 	},
 
